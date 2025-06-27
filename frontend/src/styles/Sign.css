@@ -1,0 +1,126 @@
+.netflix-auth-bg {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #141414 60%, #1f1f1f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.netflix-auth-form {
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.6);
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  position: relative;
+}
+
+.netflix-title, .netflix-auth-form h2 {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.netflix-error, .netflix-message {
+  color: #e50914;
+  background: rgba(255,255,255,0.06);
+  padding: 0.7rem;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: -0.5rem;
+  font-weight: 600;
+  font-size: 0.98em;
+}
+
+.netflix-message[style*="green"] {
+  color: #21d07a !important;
+  background: rgba(255,255,255,0.06);
+}
+
+.netflix-input, .netflix-select {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  background: #333;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1.08rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  outline: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.netflix-input:focus, .netflix-select:focus {
+  background: #444;
+  box-shadow: 0 0 0 2px #e50914;
+}
+
+.netflix-select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 49%, #e50914 51%),
+    linear-gradient(135deg, #e50914 51%, transparent 49%);
+  background-position: right 1rem top 50%, right 0.9rem top 50%;
+  background-size: 0.7em 0.7em, 0.7em 0.7em;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.netflix-btn, .auth-form button {
+  width: 100%;
+  padding: 0.95rem 0;
+  margin-top: 0.5rem;
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.18rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(229,9,20,0.15);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.netflix-btn:hover, .netflix-btn:focus,
+.auth-form button:hover, .auth-form button:focus {
+  background: #f6121d;
+  box-shadow: 0 4px 18px 0 rgba(229,9,20,0.25);
+}
+
+.netflix-switch, .auth-switch {
+  text-align: center;
+  margin-top: 1rem;
+  color: #ccc;
+  font-size: 1rem;
+}
+
+.netflix-link, .auth-switch a {
+  color: #e50914;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+.netflix-link:hover, .auth-switch a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .netflix-auth-form {
+    padding: 2rem 1rem;
+    max-width: 95vw;
+  }
+  .netflix-title, .netflix-auth-form h2 {
+    font-size: 1.5rem;
+  }
+}

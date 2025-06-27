@@ -1,0 +1,201 @@
+/* General reset and base styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f4f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* New wrapper for the whole page (Header, Form, Footer) */
+.payment-page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center; /* Center content vertically if space allows */
+}
+
+/* Ensures form is centered within its container if not already */
+.payment-page-container > form {
+    margin: auto; /* Centers the form horizontally */
+}
+
+
+form.payment-form { /* Added class to form */
+    background-color: #ffffff;
+    padding: 24px 32px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    margin-bottom: 20px; /* Space between form and footer */
+}
+
+h4 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+fieldset.card-fieldset {
+    border: none; /* Remove the default border */
+    padding: 0;
+    margin: 0 0 20px 0; /* Optional: space below fieldset */
+}
+
+legend {
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Card logos */
+.card-logos {
+    display: flex;
+    gap: 16px; /* space between icons */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-logo {
+    height: 32px;
+    width: auto; /* maintain aspect ratio */
+    object-fit: contain;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)); /* optional: light shadow for consistency */
+}
+
+.card-logo:hover {
+    filter: none;
+}
+
+/* Input fields */
+.form-group { /* Added for consistent spacing */
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block; /* Ensures label takes full width */
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"], /* CVV is now text, but for future consistency */
+select { /* Apply to select elements too */
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    color: #333; /* <<< ADDED: Explicitly set text color for all inputs and selects */
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #0077ff;
+}
+
+/* Button styling */
+.Pay-button-container { /* New wrapper for the button */
+    margin-top: 20px;
+}
+
+.pay-button {
+    width: 100%;
+    background-color: #0077ff;
+    color: white;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pay-button:hover {
+    background-color: #005fce;
+}
+
+/* Responsive behavior */
+@media (max-width: 480px) {
+    form.payment-form {
+        padding: 16px;
+    }
+
+    .card-logo {
+        height: 28px;
+        max-width: 50px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        font-size: 0.95rem;
+    }
+
+    .pay-button {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+}
+
+/* Expiry date specific styles (from your original CSS) */
+.expiry-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 16px; /* Added for consistency */
+}
+
+.expiry-field {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Allows fields to grow/shrink */
+    min-width: 130px; /* Adjusted minimum width */
+}
+
+.expiry-field label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.expiry-field select,
+.expiry-field input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #120e0e;
+    border-radius: 6px;
+    background-color: #fcf8f8;
+    transition: border-color 0.3s;
+    color: #333; /* <<< ADDED: Explicitly set text color here too */
+}
+
+.expiry-field select:focus,
+.expiry-field input:focus {
+    border-color: #007BFF;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Payment Error Message */
+.payment-error {
+    color: #d9534f; /* Red color for errors */
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 0.9em;
+}

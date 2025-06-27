@@ -1,0 +1,128 @@
+/* src/styles/AdminDash.css */
+
+/* General body styling for the admin dashboard */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif; /* Clean and modern font */
+  background-color: #1a1a1a; /* Dark background for the entire page */
+  color: #e0e0e0; /* Light grey for default text */
+  min-height: 100vh; /* Ensure full viewport height */
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6; /* Improved readability */
+}
+
+.admin-dashboard-container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically by default */
+  padding: 30px; /* Generous padding around the main content */
+  max-width: 1300px; /* Slightly wider max-width for more content space */
+  margin: 30px auto; /* Center the container with vertical margin */
+  width: 100%;
+  box-sizing: border-box; /* Include padding in element's total width and height */
+  gap: 30px; /* Spacing between header and main content */
+}
+
+.admin-dashboard-header {
+  background-color: #282828; /* Distinct dark background for the header */
+  padding: 0px 40px; /* Increased padding for a more spacious feel */
+  border-radius: 18px; /* Softer, more modern curve */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7); /* Deeper shadow for prominence */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  gap: 20px; /* Space between title and button on wrap */
+}
+
+.admin-dashboard-header h1 {
+  color: #ffffff; /* Pure white for maximum contrast */
+  font-size: 3rem; /* Larger, more impactful heading */
+  font-weight: 900; /* Extra bold */
+  margin: 0;
+  letter-spacing: 1.5px; /* Enhanced letter spacing */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); /* More defined text shadow */
+}
+
+.admin-dashboard-header button {
+  background-color: #20c997; /* Vibrant teal for logout button - high visibility */
+  color: #ffffff; /* White text for contrast */
+  border: none;
+  padding: 15px 35px; /* Larger padding for better touch target and visual weight */
+  border-radius: 10px; /* Consistent, soft curve */
+  cursor: pointer;
+  font-size: 1.1rem; /* Slightly larger font size */
+  font-weight: 700; /* Bolder text */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4); /* Clear shadow */
+  text-transform: uppercase; /* Uppercase text for prominence */
+  letter-spacing: 0.8px;
+  outline: none; /* Remove outline on focus */
+}
+
+.admin-dashboard-header button:hover {
+  background-color: #17a77d; /* Darker teal on hover */
+  transform: translateY(-4px); /* More pronounced lift effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Enhanced shadow on hover */
+}
+
+.admin-dashboard-header button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Main content area for the dashboard */
+.admin-dashboard-content {
+  flex-grow: 1; /* Allows content to take up available space */
+  display: flex;
+  flex-direction: column; /* Stack content blocks vertically */
+  gap: 30px; /* Spacing between sections */
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .admin-dashboard-header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard-container {
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  .admin-dashboard-header {
+    flex-direction: column; /* Stack header elements on medium screens */
+    align-items: flex-start;
+    padding: 25px;
+  }
+
+  .admin-dashboard-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px; /* Add space between title and button */
+  }
+
+  .admin-dashboard-header button {
+    width: 100%; /* Full width button on small screens */
+    padding: 14px 25px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-dashboard-container {
+    padding: 15px;
+    margin: 15px auto;
+  }
+
+  .admin-dashboard-header h1 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .admin-dashboard-header button {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+}

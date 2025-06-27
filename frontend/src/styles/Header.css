@@ -1,0 +1,162 @@
+header {
+  background: linear-gradient(135deg, #0a0a0a, #141414);
+  padding: 18px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  height: 100px;
+  z-index: 999;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Logo and brand container */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 80px; /* bigger logo */
+  margin-right: 16px;
+}
+
+.brand-name {
+  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: #e50914;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+
+
+
+/* Nav Links */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* ⬅️ Better spacing */
+}
+
+nav a {
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: #ff4b2b;
+  transition: 0.4s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a:hover {
+  color: #ff4b2b;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.menu-link {
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  font-size: 17px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.menu-link:hover {
+  color: #FFD700;
+}
+
+/* Blurred Glass Dropdown */
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  min-width: 220px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  display: none;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-content a {
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: background 0.3s;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 40px;
+  }
+  .brand-name {
+    font-size: 26px;
+  }
+  nav {
+    gap: 15px;
+  }
+  nav a {
+    font-size: 14px;
+  }
+}

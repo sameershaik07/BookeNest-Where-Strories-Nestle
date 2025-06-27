@@ -1,0 +1,520 @@
+:root {
+  --background-dark: #141414;
+  --background-black: #000;
+  --netflix-red: #E50914;
+  --text-light: #fff;
+  --text-muted: #b3b3b3;
+  --card-bg: #232323;
+  --card-hover-bg: #181818;
+  --modal-bg: rgba(20,20,20,0.98);
+  --blur-bg: rgba(0,0,0,0.65);
+  --shadow-dark: 0 2px 16px 0 rgba(0,0,0,0.7);
+  --border-radius: 22px;
+  --transition-fast: 0.18s cubic-bezier(.4,0,.2,1);
+  --transition-medium: 0.44s cubic-bezier(.7,0,.3,1);
+  --max-content-width: 1440px;
+  --filter-bg: #181818;
+  --btn-radius: 10px;
+  --title-font: 'Bebas Neue', 'Netflix Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&display=swap');
+
+.stylish-title {
+  text-transform: uppercase; /* ALL CAPS */
+  font-size: 4rem; /* Bigger */
+  font-family: 'Bebas Neue', 'Netflix Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #ff416c, #ff4b2b); /* Hot Pink to Orange gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* subtle shadow */
+  animation: gradientMove 5s infinite alternate;
+  margin-bottom: 2rem;
+}
+
+/* --- Responsive Stylish Title Font Size --- */
+@media (max-width: 768px) { /* Adjust for tablets and smaller */
+  .stylish-title {
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 480px) { /* Adjust for mobile phones and smaller */
+  .stylish-title {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+}
+
+/* Animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.title-accent {
+  color: inherit;
+  background: inherit;
+  -webkit-background-clip: inherit;
+  background-clip: inherit; /* Added for compatibility */
+  -webkit-text-fill-color: inherit;
+}
+
+/* Category Container */
+.category-container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 48px 24px 64px 24px; /* Default padding */
+}
+
+/* --- Responsive Category Container Padding --- */
+@media (max-width: 768px) {
+  .category-container {
+    padding: 30px 15px 40px 15px; /* Slightly reduced padding for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .category-container {
+    padding: 20px 10px 30px 10px; /* Further reduced padding for mobiles */
+  }
+}
+
+/* Filter Section */
+.filter-section {
+  background: var(--filter-bg);
+  border-radius: var(--border-radius);
+  padding: 1.6rem 2.2rem;
+  display: flex;
+  gap: 2.2rem;
+  align-items: center;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-dark);
+  flex-wrap: wrap;
+}
+
+/* --- Responsive Filter Section --- */
+@media (max-width: 480px) {
+  .filter-section {
+    flex-direction: column; /* Stack filters vertically on small phones */
+    align-items: stretch; /* Make them take full width */
+    padding: 1rem; /* Reduced padding */
+    gap: 1rem; /* Smaller gap */
+  }
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 170px;
+}
+
+/* --- Responsive Filter Group --- */
+@media (max-width: 480px) {
+  .filter-group {
+    min-width: unset; /* Allow it to shrink as needed */
+    width: 100%; /* Take full width when stacked */
+  }
+  .filter-select, .filter-range {
+    width: 100%; /* Make select and range inputs take full width of their group */
+  }
+}
+
+.filter-label {
+  color: var(--text-muted);
+  font-size: 1.08rem;
+  margin-bottom: 3px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.filter-select, .filter-range {
+  background: var(--card-bg);
+  color: var(--text-light);
+  border: none;
+  border-radius: var(--btn-radius);
+  padding: 0.62rem 1.2rem;
+  font-size: 1.09rem;
+  font-family: inherit;
+  outline: none;
+  transition: background var(--transition-fast);
+}
+
+.filter-select:focus, .filter-range:focus {
+  background: var(--card-hover-bg);
+  border: 1px solid var(--netflix-red);
+}
+
+.filter-range {
+  width: 180px;
+  accent-color: var(--netflix-red);
+  margin-top: 2px;
+}
+
+.price-range-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  letter-spacing: 0.2px;
+}
+
+/* Book Grid */
+.book-grid {
+  display: grid;
+  /* Adjust grid-template-columns to match TopPicks for 6 per row at larger sizes,
+     and then adjust with media queries */
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Use minmax for flexibility */
+  gap: 16px; /* A standard gap like in TopPicks */
+  min-height: 380px;
+  margin-top: 8px;
+  justify-items: center; /* Center items within their grid cells */
+  align-items: start; /* Align items to the start of their cells */
+}
+
+/* --- Responsive Book Grid --- */
+@media (max-width: 1120px) {
+  .book-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* 4 or 5 columns */
+  }
+}
+
+@media (max-width: 900px) { /* Added a breakpoint for slightly smaller desktops/large tablets */
+    .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* ~4 columns */
+    }
+}
+
+
+@media (max-width: 720px) {
+  .book-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); /* ~3 columns */
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* ~2 columns */
+    gap: 10px;
+  }
+}
+
+
+/* Book Card */
+.book-card {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: 8px; /* Slightly adjusted to match TopPicks' book-item */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adjusted shadow to match TopPicks */
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Match TopPicks transitions */
+  width: 160px; /* Reference from TopPicks .book-item */
+  height: auto; /* Let content dictate height now */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 0 0 auto; /* Added flex properties for potential fallback/consistency */
+}
+
+.book-card:hover {
+  transform: translateY(-5px); /* Lift effect like TopPicks */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+
+/* Image inside card */
+.book-card .book-image-box {
+  width: 100%;
+  height: 220px; /* Matches TopPicks .book-item img height */
+  object-fit: cover;
+  background: #181818;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: none; /* Removed border, image should fill */
+}
+
+.book-card .book-image-box img {
+  width: 100%;
+  height: 100%; /* Image fills its container */
+  object-fit: cover;
+  border-radius: 8px 8px 0 0; /* Match card border radius */
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+/* Card Content */
+.book-card-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px; /* Matches TopPicks .book-item h3 padding */
+  gap: 0.30rem;
+  height: auto; /* Let content dictate height */
+}
+
+/* --- Responsive Book Card Content/Typography --- */
+@media (max-width: 400px) { /* Adjust font sizes for very small cards */
+  .book-card-content {
+    padding: 8px; /* Slightly reduced padding */
+  }
+  .book-title {
+    font-size: 0.9rem;
+  }
+  .book-author, .book-price {
+    font-size: 0.8rem;
+  }
+}
+
+.book-title {
+  font-size: 16px; /* Matches TopPicks .book-item h3 font size */
+  font-weight: 700;
+  color: var(--text-light);
+  margin: 0;
+  text-align: center; /* Centered as in TopPicks .book-item h3 */
+  letter-spacing: 0.2px;
+  line-height: 1.25em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.book-author {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  margin-top: -3px;
+  text-align: center; /* Centered */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.book-price {
+  color: var(--netflix-red);
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin-top: 1px;
+  margin-bottom: 4px;
+  text-align: center; /* Centered */
+}
+
+/* Modal Background */
+.modal-blur-bg {
+  position: fixed;
+  inset: 0;
+  background: var(--blur-bg);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-medium);
+}
+
+.modal-blur-bg.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Modal Popup */
+.modal-popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 90vw;
+  max-width: 340px; /* Compact modal */
+  background: var(--modal-bg);
+  border-radius: 18px;
+  box-shadow: 0 4px 48px 0 #000b, 0 2px 30px 0 rgba(229,9,20,0.10);
+  z-index: 101;
+  transform: translate(-50%, 120vh) scale(0.96);
+  opacity: 0;
+  transition: transform var(--transition-medium), opacity var(--transition-medium);
+}
+
+.modal-popup.active {
+  animation: modal-pop-center 0.44s cubic-bezier(.7,0,.3,1) both;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* --- Responsive Modal Popup --- */
+@media (max-width: 480px) {
+  .modal-popup {
+    max-width: 95vw; /* Allow it to be slightly wider on small phones */
+    width: auto; /* Let content dictate width if smaller than max-width */
+    padding: 1rem; /* Reduced padding */
+    left: 50%; /* Ensure it's correctly centered */
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .modal-center-content {
+    flex-direction: column; /* Stack image and details vertically */
+    align-items: center; /* Center content when stacked */
+    text-align: center;
+    gap: 0.8rem;
+    padding: 1.2rem;
+  }
+  .modal-popup .modal-book-img {
+    width: 100px; /* Slightly larger image when stacked */
+    min-width: 100px;
+  }
+  .modal-popup .modal-title {
+    font-size: 1.1rem;
+  }
+  .modal-popup .modal-body {
+    font-size: 0.95rem;
+    padding: 0 1.2rem 1.2rem 1.2rem;
+  }
+}
+
+
+.modal-popup .modal-close {
+  position: absolute;
+  right: 15px;
+  top: 11px;
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 2.1rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.modal-popup .modal-book-img {
+  width: 75px;
+  min-width: 75px;
+  aspect-ratio: 2/3;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 22px 0 rgba(0,0,0,0.17);
+}
+
+.modal-center-content {
+  display: flex;
+  flex-direction: row;
+  gap: 1.1rem;
+  align-items: flex-start;
+  padding: 1.7rem;
+}
+
+.modal-book-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.10rem;
+  flex: 1;
+}
+
+.modal-popup .modal-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-light);
+  margin: 0 0 0.2em 0;
+}
+
+.modal-popup .modal-meta {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.modal-popup .modal-price {
+  color: var(--netflix-red);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.modal-popup .modal-body {
+  padding: 0 1.7rem 1.5rem 1.7rem;
+  color: var(--text-light);
+  font-size: 1.06rem;
+  line-height: 1.5em;
+  opacity: 0.96;
+}
+
+/* Book Card Buttons */
+.card-btn-group {
+  margin-top: auto; /* Pushes buttons to the bottom */
+  display: flex;
+  gap: 0;
+  justify-content: stretch;
+  flex-wrap: wrap;
+  border-top: 1px solid #232323;
+  padding-top: 0.3rem;
+  background: transparent;
+}
+
+/* Button Base */
+.btn {
+  background: var(--netflix-red); /* RED COLOR for Add to Cart */
+  color: var(--text-light); /* White text */
+  border: none;
+  border-radius: 0; /* Keep square edges for buttons within the group */
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+  flex: 1 1 50%; /* Make buttons take 50% width each */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  border-right: 1px solid #000; /* small border between two buttons */
+}
+
+/* View Details Button - Secondary */
+.btn.secondary {
+  background: #323232; /* Dark grey */
+  color: #fff;
+  border: none;
+}
+
+/* Hover Effects */
+.btn:hover {
+  background: #d40813; /* Darker red on hover */
+}
+
+.btn.secondary:hover {
+  background: #1f1f1f; /* Slightly darker grey */
+  color: var(--netflix-red); /* Text becomes red */
+}
+
+/* Active (Click) Animation */
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Animation for fade-in/fade-out of book grid */
+.fade-exit {
+  animation: fade-out 0.3s forwards;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
