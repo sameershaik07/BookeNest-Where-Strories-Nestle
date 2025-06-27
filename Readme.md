@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/BookNestLogoW.png" alt="BookNest Logo" width="200" />
+  <img src="frontend/public/assets/BookNestLogoW.png" alt="BookNest Logo" width="200" />
 </p>
 
 # BookNest
