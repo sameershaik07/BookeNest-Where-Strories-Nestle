@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./frontend/src/assets/BookNestLogoW.png" alt="BookNest Logo" width="200" />
+  <img src="assets/BookNestLogoW.png" alt="BookNest Logo" width="200" />
 </p>
 
 # BookNest
@@ -27,8 +27,8 @@ Follow these instructions to set up and run the project locally on your machine.
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/booknest.git
-cd booknest
+git clone https://github.com/sameershaik07/BookeNest-Where-Strories-Nestle.git
+cd BookNest-where-stories-nestle
 npm install
 ```
 #### 2. Create a ```.env``` file in the root directory and add the following variables:
