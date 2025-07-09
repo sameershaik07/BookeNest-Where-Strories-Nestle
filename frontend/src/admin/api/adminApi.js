@@ -21,7 +21,7 @@ export const fetchUsers = async () => {
   try {
     // This endpoint should match the one defined in your backend's authRoutes.js
     // (e.g., router.get('/api/admin/users', ...))
-    const response = await fetch('http://localhost:5000/api/admin/users', {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE}/api/admin/users`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export const fetchUserById = async (id) => {
 
   try {
     // Assuming a backend endpoint like /api/admin/users/:id
-    const response = await fetch(`http://localhost:5000/api/admin/users/${id}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE}/api/admin/users/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ export const updateUser = async (id, data) => {
 
   try {
     // Assuming a backend endpoint like /api/admin/users/:id
-    const response = await fetch(`http://localhost:5000/api/admin/users/${id}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE}/api/admin/users/${id}`, {
       method: 'PUT', // Or PATCH depending on your backend
       headers: {
         'Content-Type': 'application/json',

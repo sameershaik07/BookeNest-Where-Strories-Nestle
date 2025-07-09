@@ -28,7 +28,7 @@ const Cart = () => {
                     return;
                 }
 
-                const response = await axios.get("http://localhost:5000/api/cart", {
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE}/api/cart`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -63,7 +63,7 @@ const Cart = () => {
                 alert("You need to be logged in to remove items from cart.");
                 return;
             }
-            await axios.delete(`http://localhost:5000/api/cart/${cartItemId}`, {
+            await axios.delete(`${process.env.REACT_APP_API_BASE}/api/cart/${cartItemId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

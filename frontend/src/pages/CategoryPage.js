@@ -27,7 +27,7 @@ export default function CategoryPage({ category }) {
   useEffect(() => {
     async function fetchBooks() {
       try {
-        const res = await axios.get(`/api/books/category/${category}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_BASE}/api/books/category/${category}`);
         const booksWithPriceNum = res.data.map(b => ({
           ...b,
           priceNum: typeof b.price === "number"
@@ -109,7 +109,7 @@ export default function CategoryPage({ category }) {
         return;
       }
 
-      const response = await axios.post("http://localhost:5000/api/cart", { // **Make sure this URL matches your backend!**
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE}/api/cart`, { // **Make sure this URL matches your backend!**
         bookId: book._id, // Assuming your book objects from the API have an _id field
         title: book.title,
         author: book.author,

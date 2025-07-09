@@ -9,7 +9,7 @@ function ViewBooks() {
   useEffect(() => {
     async function fetchBooks() {
       try {
-        const response = await fetch('http://localhost:5000/api/books');
+        const response = await fetch(`${process.env.REACT_APP_API_BASE}/api/books`);
         const data = await response.json();
         setBooks(data);
       } catch (error) {

@@ -22,7 +22,7 @@ function Home() {
         async function fetchAllBooks() {
             try {
                 setLoading(true);
-                const res = await axios.get("http://localhost:5000/api/books");
+                const res = await axios.get(`${process.env.REACT_APP_API_BASE}/api/books`);
 
                 const booksData = res.data.map(book => ({
                     ...book,
@@ -91,7 +91,7 @@ function Home() {
                 return;
             }
 
-            const response = await axios.post("http://localhost:5000/api/cart", {
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE}/api/cart`, {
                 bookId: book._id,
                 title: book.title,
                 author: book.author,

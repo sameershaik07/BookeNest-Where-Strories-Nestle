@@ -54,6 +54,9 @@ const Footer = () => {
           <a href="tel:+1234567890" className="contact-info">
             📞 +91 74104 62083
           </a>
+          <a href="tel:+1234567890" className="contact-info">
+            📞 +91 95153 56474
+          </a>
           <div className="contact-address">
             🏢 No. 18,Kurnool,Andhra Pradesh,India
           </div>

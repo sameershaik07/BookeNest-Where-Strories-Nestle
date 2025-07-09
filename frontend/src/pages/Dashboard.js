@@ -15,7 +15,7 @@ function Dashboard() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const API_BASE_URL = 'http://localhost:5000/api'; // Make sure this matches your backend URL
+    const API_BASE_URL = `${process.env.REACT_APP_API_BASE}/api`; // Make sure this matches your backend URL
 
     useEffect(() => {
         const fetchUserData = async () => {

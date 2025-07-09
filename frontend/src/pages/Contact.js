@@ -15,7 +15,7 @@ const teamMembers = [
   },
   {
     name: 'Mahaboob Basha',
-    url: 'https://www.instagram.com/',
+    url: 'https://www.instagram.com/mahaboob_x9',
   },
   {
     name: 'Javeriya',
@@ -75,10 +75,15 @@ const Contact = () => {
             transition={{ delay: 0.95, duration: 0.7, type: 'spring', stiffness: 200 }}
           >
             <PhoneCall className="phone-icon" />
-          </motion.div>
-          <span className="call-number">Call 0741046208</span>
-          <span className="call-description">for more details</span>
-        </motion.a>
+            </motion.div>
+
+            <span className="call-number">Call 0741046208</span>
+            <span className="call-description">for more details</span>
+
+            <span className="call-number second-number">Or call 09515356474</span>
+            <span className="call-description">for assistance</span>
+            </motion.a>
+
 
         {/* Team Section */}
         <motion.div

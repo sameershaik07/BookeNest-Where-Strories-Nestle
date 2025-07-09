@@ -24,7 +24,7 @@ const TopPicks = () => {
         setLoading(true);
         // Make an API call to your backend endpoint that serves all books.
         // Assuming your backend serves all books from 'http://localhost:5000/api/books'
-        const res = await axios.get("http://localhost:5000/api/books");
+        const res = await axios.get(`${process.env.REACT_APP_API_BASE}/api/books`);
 
         const booksData = res.data.map(book => ({
           ...book,
@@ -98,7 +98,7 @@ const TopPicks = () => {
         return;
       }
 
-      const response = await axios.post("http://localhost:5000/api/cart", {
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE}/api/cart`, {
         bookId: book._id, // Assuming your book objects from the API have an _id field
         title: book.title,
         author: book.author,
