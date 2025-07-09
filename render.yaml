@@ -1,12 +1,19 @@
 services:
-  - type: web
-    name: frontend-app
+  - type: static
+    name: bookenest-frontend
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: build
+    runtime: static
 
   - type: web
-    name: backend-api
+    name: bookenest-backend
     rootDir: backend
     buildCommand: npm install
-    startCommand: npm run dev
+    startCommand: npm start
+    runtime: node
+    envVars:
+      - key: MONGODB_URI
+        value: your-mongodb-url
+      - key: JWT_SECRET
+        value: your-jwt-secret
