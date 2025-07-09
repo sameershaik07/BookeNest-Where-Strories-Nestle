@@ -4,6 +4,7 @@ services:
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: build
+    runtime: static
 
   - type: web
     name: bookenest-backend
