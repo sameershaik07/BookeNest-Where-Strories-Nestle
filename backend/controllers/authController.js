@@ -26,6 +26,11 @@ exports.signup = async (req, res) => {
     });
   }
 
+  // 🚫 Block admin signup attempt
+  if (user_type && user_type.toLowerCase() === 'admin') {
+    return res.status(403).json({ message: 'Access denied: Cannot sign up as admin.' });
+  }
+
   try {
     const userExists = await User.findOne({ email: emailLower });
     if (userExists) {
@@ -37,8 +42,8 @@ exports.signup = async (req, res) => {
     const newUser = new User({
       name,
       email: emailLower,
-      password, // Insecure: storing as plain text
-      user_type: user_type?.toLowerCase() || 'user', // Ensure lowercase user_type
+      password, // Insecure: should hash in real apps
+      user_type: 'user', // ✅ Always default to 'user'
     });
 
     await newUser.save();
@@ -49,6 +54,7 @@ exports.signup = async (req, res) => {
     res.status(500).json({ message: 'Signup failed', error: err.message });
   }
 };
+
 
 // Login controller (INSECURE - compares plain-text passwords)
 exports.login = async (req, res) => {
