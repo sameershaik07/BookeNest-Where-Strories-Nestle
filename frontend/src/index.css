@@ -1,11 +1,10 @@
-/* Global reset */
+/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Root variables */
 :root {
   --background-dark: #141414;
   --background-black: #000;
@@ -16,21 +15,18 @@
   --card-hover-bg: #181818;
   --modal-bg: rgba(20, 20, 20, 0.98);
   --blur-bg: rgba(0, 0, 0, 0.65);
-  --shadow-dark: 0 2px 16px 0 rgba(0, 0, 0, 0.7);
-  --border-radius: 22px;
-  --transition-fast: 0.18s cubic-bezier(.4,0,.2,1);
-  --transition-medium: 0.44s cubic-bezier(.7,0,.3,1);
-  --max-content-width: 1440px;
-  --filter-bg: #181818;
-  --btn-radius: 10px;
+  --shadow-dark: 0 2px 16px rgba(0, 0, 0, 0.7);
+  --border-radius: 16px;
+  --btn-radius: 8px;
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.4s ease;
+  --max-content-width: 1400px;
   --title-font: 'Bebas Neue', 'Netflix Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* HTML and body base settings */
 html, body {
   width: 100%;
-  height: 100%;
-  max-width: 100%;
+  min-height: 100%;
   overflow-x: hidden;
   background-color: var(--background-dark);
   color: var(--text-light);
@@ -38,39 +34,114 @@ html, body {
   line-height: 1.6;
 }
 
-/* Body layout to support sticky footer */
+body, #root {
+  display: block;
+  min-height: 100vh;
+}
 
-/* Main content flex area */
 main {
   flex: 1;
   width: 100%;
 }
 
-/* Page containers take full width */
+/* General containers */
 .container, 
 .main-content, 
-.home-page-content, 
+.page-content, 
 .admin-dashboard-container {
   width: 100%;
-  max-width: 100%;
+  max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: 0;
+  padding: 0 20px;
 }
 
-/* Header fix (if needed) */
-header {
-  width: 100%;
-  max-width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
+/* Header base (can override in header.css) */
 
-/* Footer stick to bottom */
+
+/* Footer */
 footer {
   width: 100%;
-  background-color: var(--background-dark);
+  background-color: var(--background-black);
   color: var(--text-muted);
   text-align: center;
   padding: 20px;
+  margin-top: auto;
+}
+
+/* Buttons */
+button, .btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: var(--btn-radius);
+  background-color: var(--netflix-red);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+button:hover, .btn:hover {
+  background-color: #b0070f;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--netflix-red);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+/* ---------- MOBILE FRIENDLY ---------- */
+
+/* Fix container paddings and avoid overflow on small devices */
+@media (max-width: 768px) {
+  .container,
+  .main-content,
+  .page-content,
+  .admin-dashboard-container {
+    padding: 0 14px;
+  }
+
+  footer {
+    padding: 16px 10px;
+    font-size: 14px;
+  }
+
+  button, .btn {
+    padding: 8px 16px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container,
+  .main-content,
+  .page-content,
+  .admin-dashboard-container {
+    padding: 0 10px;
+  }
+
+  footer {
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+
+  button, .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
 }
