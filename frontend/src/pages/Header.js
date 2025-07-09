@@ -62,7 +62,7 @@ const Header = () => {
     // --- END NEW ---
 
     return (
-        <header>
+        <header style={{ position: 'relative', zIndex: 9999 }}>
             <div className="logo-container">
                 <Link to="/" className="logo-link">
                     <img src="/assets/logo.png" alt="BookNest Logo" className="logo-img" />

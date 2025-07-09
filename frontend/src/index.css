@@ -1,25 +1,76 @@
-/* index.css */
-
+/* Global reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+/* Root variables */
+:root {
+  --background-dark: #141414;
+  --background-black: #000;
+  --netflix-red: #E50914;
+  --text-light: #fff;
+  --text-muted: #b3b3b3;
+  --card-bg: #232323;
+  --card-hover-bg: #181818;
+  --modal-bg: rgba(20, 20, 20, 0.98);
+  --blur-bg: rgba(0, 0, 0, 0.65);
+  --shadow-dark: 0 2px 16px 0 rgba(0, 0, 0, 0.7);
+  --border-radius: 22px;
+  --transition-fast: 0.18s cubic-bezier(.4,0,.2,1);
+  --transition-medium: 0.44s cubic-bezier(.7,0,.3,1);
+  --max-content-width: 1440px;
+  --filter-bg: #181818;
+  --btn-radius: 10px;
+  --title-font: 'Bebas Neue', 'Netflix Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
+/* HTML and body base settings */
+html, body {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: var(--background-dark);
+  color: var(--text-light);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Body layout to support sticky footer */
+
+/* Main content flex area */
+main {
+  flex: 1;
+  width: 100%;
+}
+
+/* Page containers take full width */
+.container, 
+.main-content, 
+.home-page-content, 
+.admin-dashboard-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Header fix (if needed) */
 header {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
-.App {
+/* Footer stick to bottom */
+footer {
   width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+  background-color: var(--background-dark);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 20px;
 }

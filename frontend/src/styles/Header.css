@@ -1,20 +1,67 @@
 header {
+  width: 100%;
+  box-sizing: border-box;
   background: linear-gradient(135deg, #0a0a0a, #141414);
   padding: 18px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
+  flex-wrap: wrap;
+  position: fixed;
   top: 0;
   height: 100px;
-  z-index: 999;
+  z-index: 9999; /* ⬅️ stay above hero image */
   box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-/* Logo and brand container */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap; /* ⬅️ allow wrapping on smaller screens */
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  min-width: 220px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  display: none;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease forwards;
+  z-index: 10000; /* ⬅️ higher than header */
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 40px;
+  }
+  .brand-name {
+    font-size: 26px;
+  }
+  .navbar {
+    gap: 15px;
+  }
+  .menu-link {
+    font-size: 14px;
+  }
+}
+
 .logo-container {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .logo-link {
@@ -24,39 +71,36 @@ header {
 }
 
 .logo-img {
-  height: 80px; /* bigger logo */
-  margin-right: 16px;
+  height: 60px;
+  margin-right: 12px;
 }
 
 .brand-name {
   font-family: 'Bebas Neue', 'Arial Black', sans-serif;
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 900;
   color: #e50914;
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
 }
 
-/* Navbar */
 .navbar {
   display: flex;
   align-items: center;
-  gap: 35px;
+  gap: 20px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
-
-
-
-/* Nav Links */
 nav {
   display: flex;
   align-items: center;
-  gap: 30px; /* ⬅️ Better spacing */
+  gap: 20px;
+  flex-wrap: wrap; /* Allow nav items to wrap too */
 }
 
 nav a {
   color: white;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
   text-decoration: none;
   padding: 8px 14px;
@@ -64,6 +108,7 @@ nav a {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  white-space: nowrap; /* Prevent text wrapping inside link */
 }
 
 nav a::after {
@@ -85,7 +130,6 @@ nav a:hover {
   color: #ff4b2b;
 }
 
-/* Dropdown */
 .dropdown {
   position: relative;
 }
@@ -94,17 +138,17 @@ nav a:hover {
   color: white;
   text-decoration: none;
   padding: 12px 20px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
   transition: color 0.3s ease;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .menu-link:hover {
   color: #FFD700;
 }
 
-/* Blurred Glass Dropdown */
 .dropdown-content {
   position: absolute;
   top: 100%;
@@ -112,14 +156,15 @@ nav a:hover {
   margin-top: 8px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  min-width: 220px;
+  min-width: 180px;
+  max-width: 90vw; /* ✅ Prevent dropdown from overflowing on narrow screens */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
   display: none;
   flex-direction: column;
   animation: fadeIn 0.3s ease forwards;
+  overflow: hidden; /* Avoid internal overflow */
 }
 
 @keyframes fadeIn {
@@ -131,7 +176,7 @@ nav a:hover {
   display: flex;
   align-items: center;
   color: white;
-  padding: 14px 20px;
+  padding: 12px 18px;
   text-decoration: none;
   transition: background 0.3s;
   border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -145,18 +190,25 @@ nav a:hover {
   display: flex;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .logo-img {
     height: 40px;
   }
   .brand-name {
-    font-size: 26px;
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+  header {
+    padding: 18px 20px;
   }
   nav {
-    gap: 15px;
+    gap: 10px;
   }
   nav a {
     font-size: 14px;
+  }
+  .menu-link {
+    font-size: 14px;
+    padding: 10px 14px;
   }
 }

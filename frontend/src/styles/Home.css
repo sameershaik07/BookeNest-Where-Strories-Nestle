@@ -18,25 +18,15 @@ body {
   line-height: 1.6;
 }
 
-/* Header fixes */
-header {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
 /* Hero section */
-.hero, .carousel, .carousel-section {
-  max-width: 100%;
-  overflow-x: hidden;
-}
 .hero {
   background: url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
   height: 70vh;
   display: flex;
   align-items: flex-end;
-  padding: 40px;
+  padding: 40px 5vw;
   position: relative;
+  width: 100%;
 }
 
 .hero::after {
@@ -100,7 +90,8 @@ header {
 
 /* Carousel section */
 .carousel-section {
-  padding: 20px 40px;
+  padding: 20px 5vw;
+  width: 100%;
 }
 
 .carousel-section h2 {
@@ -116,6 +107,7 @@ header {
   gap: 16px;
   padding-bottom: 10px;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
 }
 
 .carousel::-webkit-scrollbar {
@@ -195,17 +187,13 @@ header {
   background-color: #333;
 }
 
-/* Modal fixes (if needed) */
-.modal-blur-bg.active {
-  backdrop-filter: blur(5px);
-}
-
 /* Footer */
 .footer {
   text-align: center;
   color: #888;
   padding: 40px 20px;
   font-size: 14px;
+  width: 100%;
 }
 
 /* Responsive tweaks */
@@ -213,20 +201,16 @@ header {
   .hero-content h2 {
     font-size: 32px;
   }
-
   .hero-content p {
     font-size: 16px;
   }
-
   .card {
     width: 150px;
   }
-
   .card img {
     height: 220px;
   }
-
   .carousel-section {
-    padding: 20px 20px;
+    padding: 20px 5vw;
   }
 }
