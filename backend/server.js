@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const winston = require('winston');
 require('dotenv').config();
+const path = require('path')
 
 const authRoutes = require('./routes/authRoutes');
 const bookRoutes = require('./routes/bookRoutes');
@@ -11,6 +12,8 @@ const paymentRoutes = require('./routes/payment'); // Import payment routes
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+app.use(express.static(path.join(__dirname, "build")));
 
 // Winston logger setup
 const logger = winston.createLogger({
@@ -47,6 +50,11 @@ app.use('/api/books', bookRoutes);
 app.use('/api/cart', cartRoutes);      // Mount cart routes at /api/cart
 app.use('/api/payment', paymentRoutes); // Mount payment routes at /api/payment
 
+
+
+app.get("/{*any}", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 // Fallback for unknown routes
 app.use((req, res, next) => {
     logger.warn(`Unknown route accessed: ${req.method} ${req.originalUrl}`);
@@ -59,9 +67,12 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: err.message || 'Internal Server Error' });
 });
 
+
+
+
 // MongoDB connection and server start
 mongoose.connect(process.env.MONGODB_URI, {
-    // useNewUrlParser: true,  // No longer needed in Mongoose 6+
+    // useNewUrlParser: true,  // No longer needed in Mongoose 6+ 
     // useUnifiedTopology: true, // No longer needed in Mongoose 6+
 })
     .then(() => {
