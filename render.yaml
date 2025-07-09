@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: frontend-app
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+
+  - type: web
+    name: backend-api
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm run dev
