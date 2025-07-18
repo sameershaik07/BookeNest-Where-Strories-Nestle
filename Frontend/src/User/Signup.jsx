@@ -14,7 +14,11 @@ const Signup = () => {
     let payload = { name, email, password };
 
     axios
+<<<<<<< HEAD
       .post("/api/signup", payload)
+=======
+      .post("http://localhost:4000/signup", payload)
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
       .then((result) =>{
         alert('Account created')
         console.log(result)
