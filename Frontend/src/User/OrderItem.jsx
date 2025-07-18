@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 // import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import { useNavigate, useParams } from 'react-router-dom';
@@ -200,6 +202,7 @@
 // }
 
 // export default  OrderItem
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -220,7 +223,11 @@ function OrderItem() {
   const navigate = useNavigate();
 
   useEffect(() => {
+<<<<<<< HEAD
+    axios.get(`/api/item/${id}`)
+=======
     axios.get(`http://localhost:4000/item/${id}`)
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
       .then((resp) => {
         setItem(resp.data);
       })
@@ -267,7 +274,11 @@ function OrderItem() {
       updatedFormData.userName = username;
 
       // Post the updatedFormData
+<<<<<<< HEAD
+      await axios.post('/api/userorder', updatedFormData);
+=======
       await axios.post('http://localhost:4000/userorder', updatedFormData);
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
       console.log(updatedFormData);
       alert('Ordered successfully');
       navigate('/myorders');
@@ -344,7 +355,11 @@ function OrderItem() {
                 <div>
                   <div style={{ display: "flex", justifyContent: "flex-end", height: "100%",width:"100%" }} >
                   <div style={{ height: "100px",width:"50px" }} >
+<<<<<<< HEAD
+                        <img src={`/${item?.itemImage}`} alt={`${item.itemtype} Image`} />
+=======
                         <img src={`http://localhost:4000/${item?.itemImage}`} alt={`${item.itemtype} Image`} />
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
                         {/* <p className='text-end'>{item.itemtype}-{item._id.slice(3, 7)}</p> */}
                         <p className='text-end'>{item.itemtype}-{item._id ? item._id.slice(3, 7) : ''}</p>
                     </div>

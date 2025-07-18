@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+
+=======
 // import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import '../Vendor/List.css'
@@ -206,6 +209,7 @@
 // }
 
 // export default Myorders;
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Seller/List.css';
@@ -222,7 +226,11 @@ function Myorders() {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
     axios
+<<<<<<< HEAD
+      .get(`/api/getorders/${user.id}`)
+=======
       .get(`http://localhost:4000/getorders/${user.id}`)
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
       .then((response) => {
         const taskData = response.data;
         setCars(taskData);
@@ -275,7 +283,11 @@ function Myorders() {
               >
                 <div style={{ display: 'flex', justifyContent: 'space-around' }}>
                   <div>
+<<<<<<< HEAD
+                    <img  src={`/api/${item.itemImage}`}alt={`${item.itemtype} Image`} style={{ height: "80px" }} />
+=======
                     <img  src={`http://localhost:4000/${item.itemImage}`}alt={`${item.itemtype} Image`} style={{ height: "80px" }} />
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
                   </div>
                   <div>
                     <p>ProductName:</p>

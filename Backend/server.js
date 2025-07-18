@@ -1,14 +1,15 @@
 const express = require('express')
 const PORT = 4000
 const cors = require('cors')
-require('./db/config')
 const multer = require('multer'); // Import multer
 const Admin = require('./db/Admin/Admin')
 const users = require('./db/Users/userschema')
 const seller = require('./db/Seller/Sellers')
 const items = require('./db/Seller/Additem')
 const myorders = require('./db/Users/myorders')
-const WishlistItem = require('./db/Users/Wishlist')     
+const WishlistItem = require('./db/Users/Wishlist')   
+require('dotenv').config();
+const path = require('path')
 
 const app = express()
 
@@ -16,7 +17,8 @@ app.use(express.json())
 
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.URI, {
+const MONGO_URL = process.env.URI
+mongoose.connect(MONGO_URL, {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 });
@@ -35,12 +37,12 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-app.use('/uploads', express.static('uploads'));
+app.use('/api/uploads', express.static('uploads'));
 
 
                                           //  Admin  //
 // Login
-app.post('/alogin', (req, resp) => {  
+app.post('/api/alogin', (req, resp) => {  
     const { email, password } = req.body;   
     Admin.findOne({ email: email })
         .then(user => {
@@ -57,7 +59,7 @@ app.post('/alogin', (req, resp) => {
   })
   
   // Register Api
-  app.post('/asignup', (req, resp) => {
+  app.post('/api/asignup', (req, resp) => {
     const { name, email, password } = req.body;
     Admin.findOne({ email: email })
         .then(use => {
@@ -71,7 +73,7 @@ app.post('/alogin', (req, resp) => {
         }).catch(err => resp.json("failed "))
   })
 
-app.get('/users',(req,res)=>{
+app.get('/api/users',(req,res)=>{
     users.find()
     .then((user)=>{
         res.status(200).json(user)
@@ -80,7 +82,7 @@ app.get('/users',(req,res)=>{
         res.sendStatus(500)
     })
 })
-app.delete('/userdelete/:id',(req,res)=>{
+app.delete('/api/userdelete/:id',(req,res)=>{
     const { id }=req.params
      users.findByIdAndDelete(id)
      .then(() => {
@@ -90,7 +92,7 @@ app.delete('/userdelete/:id',(req,res)=>{
         res.status(500).json({ error: 'Internal server error' });
     });
   })
-  app.delete('/userorderdelete/:id', async (req, res) => {
+  app.delete('/api/userorderdelete/:id', async (req, res) => {
     const { id } = req.params;
     try {
       await myorders.findByIdAndDelete(id);
@@ -99,7 +101,7 @@ app.delete('/userdelete/:id',(req,res)=>{
       res.status(500).json({ error: 'Internal server error' });
     }
   });
-app.delete('/useritemdelete/:id', async (req, res) => {
+app.delete('/api/useritemdelete/:id', async (req, res) => {
     const { id } = req.params;
     try {
       await items.findByIdAndDelete(id);
@@ -109,7 +111,7 @@ app.delete('/useritemdelete/:id', async (req, res) => {
     }
   });
 
-app.get('/sellers',(req,res)=>{
+app.get('/api/sellers',(req,res)=>{
     seller.find()
     .then((seller)=>{
         res.status(200).json(seller)
@@ -119,7 +121,7 @@ app.get('/sellers',(req,res)=>{
     })
 })
 
-app.delete('/sellerdelete/:id',(req,res)=>{
+app.delete('/api/sellerdelete/:id',(req,res)=>{
     const { id }=req.params
      seller.findByIdAndDelete(id)
      .then(() => {
@@ -129,7 +131,7 @@ app.delete('/sellerdelete/:id',(req,res)=>{
         res.status(500).json({ error: 'Internal server error' });
     });
   })
-    app.get('/orders', (req, res) => {
+    app.get('/api/orders', (req, res) => {
     myorders.find()
         .then((orders) => {
             res.status(200).json(orders)
@@ -142,7 +144,7 @@ app.delete('/sellerdelete/:id',(req,res)=>{
 
                                                     // Seller //
 //  login api
-app.post('/slogin', (req, resp) => {
+app.post('/api/slogin', (req, resp) => {
     const { email, password } = req.body;
     seller.findOne({ email: email })
         .then(user => {
@@ -159,7 +161,7 @@ app.post('/slogin', (req, resp) => {
 })
 
 // Register Api
-app.post('/ssignup', (req, resp) => {
+app.post('/api/ssignup', (req, resp) => {
     const { name, email, password } = req.body;
     seller.findOne({ email: email })
         .then(use => {
@@ -173,7 +175,7 @@ app.post('/ssignup', (req, resp) => {
         }).catch(err => resp.json("failed "))
 })
 // addBook
-app.post('/items', upload.single('itemImage'), async (req, res) => {
+app.post('/api/items', upload.single('itemImage'), async (req, res) => {
     const { title, author, genre, description, price, userId, userName } = req.body;
     const itemImage = req.file.path; // The path to the uploaded image
 
@@ -186,7 +188,7 @@ app.post('/items', upload.single('itemImage'), async (req, res) => {
     }
 });
 //getbooks
-app.get('/getitem/:userId', async (req, res) => {
+app.get('/api/getitem/:userId', async (req, res) => {
     const userId = req.params.userId;
     try {
         const tasks = await items.find({ userId }).sort('position');
@@ -196,7 +198,7 @@ app.get('/getitem/:userId', async (req, res) => {
     }
 });
 //delete book
-app.delete('/itemdelete/:id', (req, res) => {
+app.delete('/api/itemdelete/:id', (req, res) => {
     const { id } = req.params;
     items.findByIdAndDelete(id)
         .then(() => {
@@ -207,7 +209,7 @@ app.delete('/itemdelete/:id', (req, res) => {
         });
 })
 //getorders
-app.get('/getsellerorders/:userId', async (req, res) => {
+app.get('/api/getsellerorders/:userId', async (req, res) => {
     const sellerId = req.params.userId;
     try {
         const tasks = await myorders.find({ sellerId }).sort('position');
@@ -221,7 +223,7 @@ app.get('/getsellerorders/:userId', async (req, res) => {
 
                                             // users  //
 // login
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
 const { email, password } = req.body;
     users.findOne({ email: email })
         .then(user => {
@@ -239,7 +241,7 @@ const { email, password } = req.body;
         })
 })
 
-app.post('/signup', (req, resp) => {
+app.post('/api/signup', (req, resp) => {
     const { name, email, password } = req.body;
     users.findOne({ email: email })
         .then(use => {
@@ -253,7 +255,7 @@ app.post('/signup', (req, resp) => {
         }).catch(err => resp.json("failed "))
 })
 
-app.get('/item', async (req, res) => {
+app.get('/api/item', async (req, res) => {
     try {
         const images = await items.find();
         res.json(images);
@@ -263,7 +265,7 @@ app.get('/item', async (req, res) => {
     }
 });
 // Single item
-app.get('/item/:id', async (req, res) => {
+app.get('/api/item/:id', async (req, res) => {
     const id = req.params.id;
     try {
         const item = await items.findById({ _id: id });
@@ -273,7 +275,7 @@ app.get('/item/:id', async (req, res) => {
     }
 });
 
-app.post('/userorder', async (req, res) => {
+app.post('/api/userorder', async (req, res) => {
     const { flatno, city, state, pincode, totalamount, seller, sellerId, BookingDate, description, Delivery, userId, userName: String, booktitle, bookauthor, bookgenre, itemImage } = req.body;
 
     try {
@@ -285,7 +287,7 @@ app.post('/userorder', async (req, res) => {
     }
 });
 
-app.get('/getorders/:userId', async (req, res) => {
+app.get('/api/getorders/:userId', async (req, res) => {
     const userId = req.params.userId;
     try {
         const tasks = await myorders.find({ userId }).sort('position');
@@ -295,7 +297,7 @@ app.get('/getorders/:userId', async (req, res) => {
     }
 });
 
-app.get('/wishlist', async (req, res) => {
+app.get('/api/wishlist', async (req, res) => {
     try {
       const wishlistItems = await WishlistItem.find();
       res.json(wishlistItems);
@@ -304,7 +306,7 @@ app.get('/wishlist', async (req, res) => {
       res.status(500).send('Server Error');
     }
   });
-  app.get('/wishlist/:userId', async (req, res) => {
+  app.get('/api/wishlist/:userId', async (req, res) => {
     const userId = req.params.userId;
     try {
         const tasks = await WishlistItem.find({ userId }).sort('position');
@@ -314,7 +316,7 @@ app.get('/wishlist', async (req, res) => {
     }
 });
 
-app.post('/wishlist/add', async (req, res) => {
+app.post('/api/wishlist/add', async (req, res) => {
     const { itemId, title,itemImage,userId,userName } = req.body;
 
     try {
@@ -335,7 +337,7 @@ app.post('/wishlist/add', async (req, res) => {
     }
 });
 
-  app.post('/wishlist/remove', async (req, res) => {
+  app.post('/api/wishlist/remove', async (req, res) => {
     const { itemId } = req.body;
   
     try {
@@ -349,7 +351,11 @@ app.post('/wishlist/add', async (req, res) => {
     }
   });
 
+app.use(express.static(path.join(__dirname, 'dist')));
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist','index.html'));
+});
 
 
 

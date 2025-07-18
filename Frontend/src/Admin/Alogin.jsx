@@ -14,7 +14,11 @@ const Alogin = () => {
     e.preventDefault();
     let payload = { email, password };
     axios
+<<<<<<< HEAD
+      .post("/api/alogin", payload)
+=======
       .post("http://localhost:4000/alogin", payload)
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
       .then((res) => {
         console.log("login: " + res.data.Status);
         if (res.data.Status === "Success") {

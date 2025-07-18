@@ -20,7 +20,11 @@ function Shome() {
       console.log(user)
       if (user) {
         axios
+<<<<<<< HEAD
+          .get(`/api/getitem/${user.id}`)
+=======
           .get(`http://localhost:4000/getitem/${user.id}`)
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
           .then((response) => {
             console.log('Response data:', response.data); // Log the response data
             const taskData = response.data;
@@ -34,7 +38,11 @@ function Shome() {
       }
 
       // Fetch orders data
+<<<<<<< HEAD
+     axios.get(`/api/getsellerorders/${user.id}`)
+=======
      axios.get(`http://localhost:4000/getsellerorders/${user.id}`)
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
     .then((response) => {
       setOrders(response.data);
     })

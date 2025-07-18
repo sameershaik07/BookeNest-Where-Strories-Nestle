@@ -14,7 +14,11 @@ function Wishlist() {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
     axios
+<<<<<<< HEAD
+      .get(`/api/wishlist/${user.id}`) // Adjust the endpoint accordingly
+=======
       .get(`http://localhost:4000/wishlist/${user.id}`) // Adjust the endpoint accordingly
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
       .then((response) => {
         const wishlistData = response.data;
         setWishlist(wishlistData);
@@ -30,12 +34,20 @@ function Wishlist() {
   const removeFromWishlist = async (itemId) => {
     try {
       // Remove item from the wishlist
+<<<<<<< HEAD
+      await axios.post(`/api/wishlist/remove`, { itemId }); // Adjust the endpoint accordingly
+=======
       await axios.post(`http://localhost:4000/wishlist/remove`, { itemId }); // Adjust the endpoint accordingly
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
 
       // Refresh the wishlist items
       const user = JSON.parse(localStorage.getItem('user'));
       if(user){
+<<<<<<< HEAD
+      const response = await axios.get(`/api/wishlist/${user.id}`,); // Adjust the endpoint accordingly
+=======
       const response = await axios.get(`http://localhost:4000/wishlist/${user.id}`,); // Adjust the endpoint accordingly
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
       setWishlist(response.data);
     } 
     else{
@@ -55,7 +67,11 @@ function Wishlist() {
         {wishlist.map((item) => (
           <div key={item._id} className="bg-white p-4 rounded shadow">
             <img
+<<<<<<< HEAD
+              src={`/${item.itemImage}`}
+=======
               src={`http://localhost:4000/${item.itemImage}`}
+>>>>>>> 39fbaa7585773ecaa8f582a7eed31f9caad35d0e
               alt="Item Image"
               className="rounded-t-lg"
               style={{ height: '350px', width: '500px' }}

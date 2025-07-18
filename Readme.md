@@ -1,7 +1,76 @@
-# BookNest
-BookNest : Where Stories Nestle 
-Welcome to the literary haven of the digital age—introducing our revolutionary Book-Store Application, a masterpiece crafted with precision using the powerful MERN (MongoDB, Express.js, React, Node.js) Stack. Immerse yourself in a world where the love for reading converges seamlessly with cutting-edge technology, redefining the way bibliophiles explore, discover, and indulge in their literary pursuits.
-Tailored for the modern book enthusiast, our MERN-based Book-Store Application seamlessly blends robust functionality with an intuitive user interface. From the joy of discovering new releases to the nostalgia of revisiting timeless classics, our platform promises an immersive reading experience customized to cater to your literary preferences.
-Fueling the backbone of our application is MongoDB, ensuring a scalable and efficient database infrastructure that facilitates swift access to an extensive collection of literary works. Express.js, with its streamlined web application framework, establishes a responsive and efficient server, while Node.js ensures high-performance, non-blocking I/O operations—resulting in a seamless and enjoyable user experience.
-At the heart of our Book-Store Application lies React, a dynamic and feature-rich JavaScript library. Dive into a visually enchanting and interactive interface where every click, search, and book selection feels like a literary journey. Whether you're exploring on a desktop, tablet, or smartphone, our responsive design ensures a consistent and delightful experience across all devices.
-Say farewell to the constraints of traditional bookstores and embrace a new era of possibilities with our MERN Stack Book-Store Application. Join us as we transform how you connect with literature, making the discovery of your next favorite read an effortless and enriching experience. Get ready to turn the digital pages of a new chapter in reading, where every book is just a click away, and the literary world is at your fingertips. It's time to open the door to a future where the love for books meets the convenience of modern technology.
+📚 BookNest: Where Stories Nestle
+Welcome to BookNest, a full-stack book store application built with the powerful MERN Stack (MongoDB, Express.js, React, Node.js). This platform offers seamless integration between frontend and backend, enabling users to explore, purchase, and manage books with ease.
+
+🚀 Live Demo
+📍 BookNest on Render (For testing, login via /api/alogin or /api/slogin using demo credentials)
+
+🏗️ Tech Stack
+Frontend: React + Vite
+
+Backend: Node.js + Express
+
+Database: MongoDB (via Mongoose)
+
+Auth: JWT (optional), basic login/register
+
+UI Enhancements: CSS animations for smooth interactions
+
+File Uploads: Multer with static /api/uploads
+
+📁 Folder Structure
+BookNest/
+├── backend/
+│   ├── db/               # All schemas: Admin, Users, Seller, Wishlist
+│   ├── uploads/          # File storage (served statically)
+│   ├── server.js         # Main Express server
+│   └── .env              # MongoDB URI & Secrets
+├── frontend/
+│   ├── src/              # React components
+│   ├── vite.config.js    # Proxy to backend during development
+│   └── dist/             # Build served via Express
+🔧 Setup Instructions
+1. Clone the repo
+bash
+git clone https://github.com/Mahabub-3301/BookeNest-Where-Strories-Nestle.git
+cd BookNest
+2. Backend
+bash
+cd backend
+npm install
+# Add your .env file with MONGO_URI
+node server.js
+3. Frontend
+bash
+cd frontend
+npm install
+npm run dev     # For development
+npm run build   # Creates production-ready dist folder
+4. Deployment
+Copy dist/ into backend/
+
+Add static route in Express:
+
+js
+app.use(express.static(path.join(__dirname, 'dist')));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+🔒 Admin & Seller Routes
+Method	Route	Purpose
+POST	/api/alogin	Admin Login
+POST	/api/asignup	Admin Signup
+POST	/api/slogin	Seller Login
+POST	/api/ssignup	Seller Signup
+GET	/api/users	Get all users
+DELETE	/api/userdelete/:id	Delete user by ID
+GET	/api/orders	List all orders
+💡 Features
+Scalable database schema with realistic book seeding
+
+Clean Axios integration with /api proxy via Vite
+
+File upload using Multer for seller book listings
+
+Admin control over users, sellers, orders
+
+Frontend/backend fully decoupled for ease of deployment
